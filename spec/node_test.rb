@@ -109,4 +109,86 @@ class NodeTest < Minitest::Test
     assert_equal node12, node14.left
     assert_equal node16, node14.right
   end
+
+  def test_returns_true_if_node_is_equal_to_search_value
+    node = Node.new(10)
+
+    assert node.equal_to?(10)
+  end
+
+  def test_returns_true_if_left_link_is_equal_to_search_value
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+
+    node1.push(node2)
+
+    assert node1.equal_to?(8)
+  end
+
+  def test_returns_true_if_right_link_is_equal_to_search_value
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert node1.equal_to?(12)
+  end
+
+  def test_returns_true_if_search_value_is_found_in_left_side_of_tree
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert node10.equal_to?(9)
+  end
+
+  def test_returns_true_if_search_value_is_found_in_right_side_of_tree
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert node10.equal_to?(12)
+  end
+
+  def test_returns_false_if_search_value_is_not_found_in_large_tree
+    skip
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert node10.equal_to?(3)
+  end
 end

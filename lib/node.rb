@@ -1,3 +1,5 @@
+require 'pry'
+
 class Node
   attr_accessor :left, :right
   attr_reader :data
@@ -20,6 +22,16 @@ class Node
       else
         right.push(node)
       end
+    end
+  end
+
+  def equal_to?(value)
+    return true if data == value
+
+    if value < data && !left.nil?
+      left.equal_to?(value)
+    elsif value > data && !right.nil?
+      right.equal_to?(value)
     end
   end
 end
