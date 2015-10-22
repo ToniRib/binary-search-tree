@@ -55,7 +55,20 @@ class NodeTest < Minitest::Test
 
     node3 = Node.new(6)
     node1.push(node3)
+
     refute_equal node3, node1.left
     assert_equal node3, node2.left
+  end
+
+  def test_can_set_a_right_link_if_right_link_already_exists
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+    node1.push(node2)
+
+    node3 = Node.new(614)
+    node1.push(node3)
+
+    refute_equal node3, node1.right
+    assert_equal node3, node2.right
   end
 end
