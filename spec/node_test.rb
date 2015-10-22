@@ -375,4 +375,23 @@ class NodeTest < Minitest::Test
 
     assert_equal 2, node1.depth(12)
   end
+
+  def test_returns_depth_of_child_node
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert_equal 3, node10.depth(12)
+  end
 end

@@ -45,6 +45,7 @@ class Node
     right.maximum
   end
 
+  # What if node doesn't exist? should search equal_to? first
   def depth(value)
     return 1 if data == value
     if value < data
