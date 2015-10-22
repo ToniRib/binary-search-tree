@@ -351,4 +351,28 @@ class NodeTest < Minitest::Test
 
     assert_equal 14, node10.maximum
   end
+
+  def test_single_node_returns_depth_of_one
+    node = Node.new(10)
+
+    assert_equal 1, node.depth(10)
+  end
+
+  def test_returns_2_if_node_is_left_child
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+
+    node1.push(node2)
+
+    assert_equal 2, node1.depth(8)
+  end
+
+  def test_returns_2_if_node_is_right_child
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert_equal 2, node1.depth(12)
+  end
 end

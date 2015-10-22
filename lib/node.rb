@@ -37,13 +37,20 @@ class Node
 
   def minimum
     return data if left.nil?
-
     left.minimum
   end
 
   def maximum
     return data if right.nil?
-
     right.maximum
+  end
+
+  def depth(value)
+    return 1 if data == value
+    if value < data
+      1 + left.depth(value)
+    else
+      1 + right.depth(value)
+    end
   end
 end
