@@ -8,7 +8,11 @@ class Node
 
   def push(node)
     if node.data < data
-      @left = node
+      if @left.nil?
+        @left = node
+      else
+        left.push(node)
+      end
     else
       @right = node
     end
