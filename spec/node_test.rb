@@ -48,7 +48,7 @@ class NodeTest < Minitest::Test
     refute node1.left
   end
 
-  def test_can_set_a_left_link_if_left_link_already_exists
+  def test_properly_sets_a_left_link_if_left_link_already_exists
     node1 = Node.new(10)
     node2 = Node.new(8)
     node1.push(node2)
@@ -60,15 +60,53 @@ class NodeTest < Minitest::Test
     assert_equal node3, node2.left
   end
 
-  def test_can_set_a_right_link_if_right_link_already_exists
+  def test_properly_sets_a_right_link_if_right_link_already_exists
     node1 = Node.new(10)
     node2 = Node.new(12)
     node1.push(node2)
 
-    node3 = Node.new(614)
+    node3 = Node.new(14)
     node1.push(node3)
 
     refute_equal node3, node1.right
     assert_equal node3, node2.right
+  end
+
+  def test_adds_right_and_left_links_in_correct_position
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+    node3 = Node.new(14)
+
+    node1.push(node2)
+    node1.push(node3)
+
+    assert_equal node2, node1.left
+    assert_equal node3, node1.right
+  end
+
+  def test_sets_all_nodes_in_correct_position_down_to_third_level
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert_equal node8, node10.left
+    assert_equal node14, node10.right
+
+    assert_equal node6, node8.left
+    assert_equal node9, node8.right
+
+    assert_equal node12, node14.left
+    assert_equal node16, node14.right
   end
 end

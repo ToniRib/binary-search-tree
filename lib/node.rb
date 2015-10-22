@@ -6,6 +6,7 @@ class Node
     @data = data
   end
 
+  # will need to refactor
   def push(node)
     if node.data < data
       if left.nil?
