@@ -209,4 +209,75 @@ class NodeTest < Minitest::Test
 
     refute node10.equal_to?(18)
   end
+
+  def test_node_with_no_links_returns_itself_as_minimum
+    node = Node.new(10)
+
+    assert_equal 10, node.minimum
+  end
+
+  def test_node_with_only_right_link_returns_itself_as_minimum
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert_equal 10, node1.minimum
+  end
+
+  def test_node_with_link_link_only_returns_left_link_as_minimum
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+
+    node1.push(node2)
+
+    assert_equal 8, node1.minimum
+  end
+
+  def test_node_with_both_links_returns_left_link_as_minimum
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+    node3 = Node.new(12)
+
+    node1.push(node2)
+    node1.push(node3)
+
+    assert_equal 8, node1.minimum
+  end
+
+  def test_returns_leftmost_node_as_minimum
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert_equal 6, node10.minimum
+  end
+
+  def test_returns_leftmost_node_of_all_levels_as_minimum
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert_equal 8, node10.minimum
+  end
 end

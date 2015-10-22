@@ -34,4 +34,10 @@ class Node
       right.equal_to?(value)
     end
   end
+
+  def minimum
+    return data if left.nil?
+
+    left.minimum
+  end
 end
