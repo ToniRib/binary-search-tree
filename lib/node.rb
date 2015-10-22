@@ -40,4 +40,10 @@ class Node
 
     left.minimum
   end
+
+  def maximum
+    return data if right.nil?
+
+    right.maximum
+  end
 end
