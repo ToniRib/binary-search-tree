@@ -54,4 +54,15 @@ class Node
       1 + right.depth(value)
     end
   end
+
+  def count
+    return 1 if left.nil? && right.nil?
+    if !left.nil? && right.nil?
+      1 + left.count
+    elsif !right.nil? && left.nil?
+      1 + right.count
+    else
+      1 + left.count + right.count
+    end
+  end
 end

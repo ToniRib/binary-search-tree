@@ -394,4 +394,58 @@ class NodeTest < Minitest::Test
 
     assert_equal 3, node10.depth(12)
   end
+
+  def test_single_node_returns_a_count_of_one
+    node = Node.new(10)
+
+    assert_equal 1, node.count
+  end
+
+  def test_returns_two_if_node_has_left_link_only
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+
+    node1.push(node2)
+
+    assert_equal 2, node1.count
+  end
+
+  def test_returns_two_if_node_has_right_link_only
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert_equal 2, node1.count
+  end
+
+  def test_returns_three_if_node_has_both_links
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+    node3 = Node.new(8)
+
+    node1.push(node2)
+    node1.push(node3)
+
+    assert_equal 3, node1.count
+  end
+
+  def test_returns_correct_number_of_nodes_in_three_layer_tree
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert_equal 7, node10.count
+  end
 end
