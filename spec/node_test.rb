@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/node'
 
+# TODO: Add assertion methods
+# TODO: Split into different test classes???
+
 class NodeTest < Minitest::Test
   def test_can_create_a_node_with_data
     node = Node.new(10)
@@ -188,7 +191,7 @@ class NodeTest < Minitest::Test
     node10.push(node12)
     node10.push(node16)
 
-    refute node10.equal_to?(3)
+    assert_equal false, node10.equal_to?(3)
   end
 
   def test_returns_false_if_value_is_not_found_in_right_side_of_tree
@@ -207,7 +210,7 @@ class NodeTest < Minitest::Test
     node10.push(node12)
     node10.push(node16)
 
-    refute node10.equal_to?(18)
+    assert_equal false, node10.equal_to?(18)
   end
 
   def test_node_with_no_links_returns_itself_as_minimum
@@ -559,5 +562,78 @@ class NodeTest < Minitest::Test
     node10.push(node20)
 
     assert_equal [6, 8, 9, 10, 12, 14, 16, 18, 20], node10.sort
+  end
+
+  def test_reports_max_height_of_one_if_tree_has_one_node
+    node = Node.new(10)
+
+    assert_equal 1, node.max_height
+  end
+
+  def test_reports_max_height_of_two_if_tree_has_left_link_only
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+
+    node1.push(node2)
+
+    assert_equal 2, node1.max_height
+  end
+
+  def test_reports_max_height_of_two_if_tree_has_right_link_only
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert_equal 2, node1.max_height
+  end
+
+  def test_reports_max_height_of_two_if_tree_has_both_links
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+    node3 = Node.new(8)
+
+    node1.push(node2)
+    node1.push(node3)
+
+    assert_equal 2, node1.max_height
+  end
+
+  def test_reports_max_height_of_three_for_layer_three_tree
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node12 = Node.new(12)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node12)
+
+    assert_equal 3, node10.max_height
+  end
+
+  def test_reports_max_height_of_five_for_tree_with_long_right_branch
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+    node18 = Node.new(18)
+    node20 = Node.new(20)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+    node10.push(node18)
+    node10.push(node20)
+
+    assert_equal 5, node10.max_height
   end
 end

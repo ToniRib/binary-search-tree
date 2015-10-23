@@ -32,6 +32,8 @@ class Node
       left.equal_to?(value)
     elsif value > data && !right.nil?
       right.equal_to?(value)
+    else
+      false
     end
   end
 
@@ -69,6 +71,7 @@ class Node
     end
   end
 
+  # 10 lines: will need to refactor
   def sort
     return [data] if left.nil? && right.nil?
 
@@ -81,5 +84,28 @@ class Node
       sorted.push(left.sort).push(data).push(right.sort)
     end
     sorted.flatten
+  end
+
+  # need to refactor long method
+  def max_height
+    return 1 if left.nil? && right.nil?
+
+    left_height = 0
+    right_height = 0
+
+    if !left.nil? && right.nil?
+      left_height = 1 + left.max_height
+    elsif !right.nil? && left.nil?
+      right_height = 1 + right.max_height
+    else
+      left_height = 1 + left.max_height
+      right_height = 1 + right.max_height
+    end
+
+    return_longest_height(left_height, right_height)
+  end
+
+  def return_longest_height(left, right)
+    left < right ? right : left
   end
 end
