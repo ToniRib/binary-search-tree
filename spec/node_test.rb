@@ -564,6 +564,16 @@ class NodeTest < Minitest::Test
     assert_equal [6, 8, 9, 10, 12, 14, 16, 18, 20], node10.sort
   end
 
+  def test_returns_longest_height_if_left_is_longest
+    node = Node.new(10)
+    assert_equal 6, node.return_longest_height(6, 4)
+  end
+
+  def test_returns_longest_height_if_right_is_longest
+    node = Node.new(10)
+    assert_equal 6, node.return_longest_height(4, 6)
+  end
+
   def test_reports_max_height_of_one_if_tree_has_one_node
     node = Node.new(10)
 
