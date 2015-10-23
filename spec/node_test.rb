@@ -460,4 +460,39 @@ class NodeTest < Minitest::Test
 
     assert_equal 7, node10.count
   end
+
+  def test_sort_outputs_data_from_single_node_in_an_array
+    node = Node.new(10)
+
+    assert_equal [10], node.sort
+  end
+
+  def test_sorts_node_with_only_left_link
+    node1 = Node.new(10)
+    node2 = Node.new(8)
+
+    node1.push(node2)
+
+    assert_equal [8, 10], node1.sort
+  end
+
+  def test_sorts_node_with_only_right_link
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert_equal [10, 12], node1.sort
+  end
+
+  def test_sorts_node_with_left_and_right_links
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+    node3 = Node.new(8)
+
+    node1.push(node2)
+    node1.push(node3)
+
+    assert_equal [8, 10, 12], node1.sort
+  end
 end

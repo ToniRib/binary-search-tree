@@ -47,7 +47,9 @@ class Node
 
   def depth(value)
     raise "Value does not exist in tree" if !equal_to?(value)
+
     return 1 if data == value
+
     if value < data
       1 + left.depth(value)
     else
@@ -57,12 +59,26 @@ class Node
 
   def count
     return 1 if left.nil? && right.nil?
+
     if !left.nil? && right.nil?
       1 + left.count
     elsif !right.nil? && left.nil?
       1 + right.count
     else
       1 + left.count + right.count
+    end
+  end
+
+  def sort
+    return [data] if left.nil? && right.nil?
+
+    sorted = []
+    if !left.nil? && right.nil?
+      sorted.push(left.data).push(data)
+    elsif !right.nil? && left.nil?
+      sorted.push(data).push(right.data)
+    else
+      sorted.push(left.data).push(data).push(right.data)
     end
   end
 end
