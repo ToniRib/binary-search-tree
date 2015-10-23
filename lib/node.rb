@@ -45,8 +45,8 @@ class Node
     right.maximum
   end
 
-  # What if node doesn't exist? should search equal_to? first
   def depth(value)
+    raise "Value does not exist in tree" if !equal_to?(value)
     return 1 if data == value
     if value < data
       1 + left.depth(value)
