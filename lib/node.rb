@@ -74,11 +74,12 @@ class Node
 
     sorted = []
     if !left.nil? && right.nil?
-      sorted.push(left.data).push(data)
+      sorted.push(left.sort).push(data)
     elsif !right.nil? && left.nil?
-      sorted.push(data).push(right.data)
+      sorted.push(data).push(right.sort)
     else
-      sorted.push(left.data).push(data).push(right.data)
+      sorted.push(left.sort).push(data).push(right.sort)
     end
+    sorted.flatten
   end
 end

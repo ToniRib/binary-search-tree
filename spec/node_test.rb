@@ -495,4 +495,69 @@ class NodeTest < Minitest::Test
 
     assert_equal [8, 10, 12], node1.sort
   end
+
+  def test_sorts_nodes_down_to_layer_three
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+
+    assert_equal [6, 8, 9, 10, 12, 14, 16], node10.sort
+  end
+
+  def test_sorts_nodes_with_long_left_branch
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+    node5 = Node.new(5)
+    node3 = Node.new(3)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+    node10.push(node5)
+    node10.push(node3)
+
+    assert_equal [3, 5, 6, 8, 9, 10, 12, 14, 16], node10.sort
+  end
+
+  def test_sorts_nodes_with_long_right_branch
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node6 = Node.new(6)
+    node12 = Node.new(12)
+    node16 = Node.new(16)
+    node18 = Node.new(18)
+    node20 = Node.new(20)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node6)
+    node10.push(node12)
+    node10.push(node16)
+    node10.push(node18)
+    node10.push(node20)
+
+    assert_equal [6, 8, 9, 10, 12, 14, 16, 18, 20], node10.sort
+  end
 end
