@@ -111,4 +111,40 @@ class TreeTest < Minitest::Test
     refute bst.include?(3)
   end
 
+  def test_raises_exception_if_no_head_exists
+    bst = Tree.new
+
+    exception = assert_raises("RuntimeError") {bst.depth_of(9)}
+    assert_equal("Value does not exist in tree, because tree has no head", exception.message)
+  end
+
+  def test_raises_exception_if_value_if_not_found
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    exception = assert_raises("RuntimeError") {bst.depth_of(3)}
+    assert_equal("Value does not exist in tree", exception.message)
+  end
+
+  def test_returns_one_if_value_matches_head
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 1, bst.depth_of(10)
+  end
+
+  def test_returns_depth_of_value
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert_equal 2, bst.depth_of(8)
+    assert_equal 3, bst.depth_of(9)
+  end
+
 end

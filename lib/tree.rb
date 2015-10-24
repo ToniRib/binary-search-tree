@@ -24,6 +24,14 @@ class Tree
   def include?(value)
     head ? head.equal_to?(value) : false
   end
+
+  def depth_of(value)
+    if head.nil?
+      raise "Value does not exist in tree, because tree has no head"
+    else
+      head.depth(value)
+    end
+  end
 end
 
 if __FILE__ == $0
