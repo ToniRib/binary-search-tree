@@ -69,38 +69,6 @@ class TreeTest < Minitest::Test
     assert_equal 5, bst.count
   end
 
-  def test_returns_true_if_left_link_exists
-
-  end
-
-  def test_returns_false_if_left_link_does_not_exist
-
-  end
-
-  def test_returns_true_if_right_link_exists
-
-  end
-
-  def test_returns_false_if_right_link_does_not_exist
-
-  end
-
-  def test_returns_true_if_only_left_link_exists
-
-  end
-
-  def test_returns_false_if_only_left_link_does_not_exist
-
-  end
-
-  def test_returns_true_if_only_right_link_exists
-
-  end
-
-  def test_returns_false_if_only_right_link_does_not_exist
-
-  end
-
   def test_returns_count_zero_if_there_is_no_head_node
     bst = Tree.new
     assert_equal 0, bst.count

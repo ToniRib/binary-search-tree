@@ -2,9 +2,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/node'
 
-# TODO: Add assertion methods
-# TODO: Split into different test classes???
-
 class NodeTest < Minitest::Test
   def test_can_create_a_node_with_data
     node = Node.new(10)

@@ -101,11 +101,11 @@ class Node
     end
   end
 
-  # 10 lines: will need to refactor
   def sort
     return [data] if left.nil? && right.nil?
 
     sorted = []
+
     if only_left_link_exists
       sorted.push(left.sort).push(data)
     elsif only_right_link_exists
@@ -113,10 +113,10 @@ class Node
     else
       sorted.push(left.sort).push(data).push(right.sort)
     end
+
     sorted.flatten
   end
 
-  # need to refactor long method
   def max_height
     return 1 if left.nil? && right.nil?
 
