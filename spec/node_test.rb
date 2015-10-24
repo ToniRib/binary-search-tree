@@ -99,6 +99,20 @@ class NodeTest < Minitest::Test
     assert_equal node16, node14.right
   end
 
+  def test_returns_message_to_user_if_node_already_exists
+    node10 = Node.new(10)
+    node8a = Node.new(8)
+    node14 = Node.new(14)
+    node8b = Node.new(8)
+
+    node10.push(node8a)
+    node10.push(node14)
+    
+    msg = "Ignoring node with duplicate value: #{node8b.data}"
+
+    assert_equal msg, node10.push(node8b)
+  end
+
   def test_returns_true_if_node_is_equal_to_search_value
     node = Node.new(10)
 

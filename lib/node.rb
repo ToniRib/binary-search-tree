@@ -11,8 +11,10 @@ class Node
   def push(node)
     if node.data < data
       add_node_to_left_link(node)
-    else
+    elsif node.data > data
       add_node_to_right_link(node)
+    else
+      return_duplicate_node_message(node)
     end
   end
 
@@ -30,6 +32,10 @@ class Node
     else
       right.push(node)
     end
+  end
+
+  def return_duplicate_node_message(node)
+    "Ignoring node with duplicate value: #{node.data}"
   end
 
   def equal_to?(value)
