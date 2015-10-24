@@ -749,4 +749,63 @@ class NodeTest < Minitest::Test
 
     refute node1.right
   end
+
+  def test_can_delete_a_child_node_with_no_links
+    node10 = Node.new(10)
+    node8 = Node.new(8)
+    node14 = Node.new(14)
+    node9 = Node.new(9)
+    node12 = Node.new(12)
+
+    node10.push(node8)
+    node10.push(node14)
+    node10.push(node9)
+    node10.push(node12)
+
+    assert_equal node9, node8.right
+
+    node10.delete(9)
+
+    refute node8.right
+  end
+
+  def test_can_delete_a_node_with_a_left_link
+    node10 = Node.new(10)
+    node7 = Node.new(7)
+    node14 = Node.new(14)
+    node5 = Node.new(5)
+    node18 = Node.new(18)
+
+    node10.push(node7)
+    node10.push(node14)
+    node10.push(node5)
+    node10.push(node18)
+
+    assert_equal node7, node10.left
+    assert_equal node5, node7.left
+
+    node10.delete(7)
+
+    assert_equal node5, node10.left
+  end
+
+  def test_can_delete_a_node_with_a_right_link
+    node10 = Node.new(10)
+    node7 = Node.new(7)
+    node14 = Node.new(14)
+    node5 = Node.new(5)
+    node18 = Node.new(18)
+
+    node10.push(node7)
+    node10.push(node14)
+    node10.push(node5)
+    node10.push(node18)
+
+    assert_equal node14, node10.right
+    assert_equal node18, node14.right
+
+    node10.delete(14)
+
+    assert_equal node18, node10.right
+  end
 end

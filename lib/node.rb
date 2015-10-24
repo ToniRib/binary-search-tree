@@ -7,6 +7,8 @@ class Node
 
   def initialize(data)
     @data = data
+    @right = nil
+    @left = nil
   end
 
   def left_link_exists
@@ -141,10 +143,14 @@ class Node
     # binding.pry
     if value < data
       if left.data == value
+        next_node = left
         # it's the left child of the current node
-        if left.left.nil? && left.right.nil?
+        if next_node.left.nil? && next_node.right.nil?
           # no children
           @left = nil
+        elsif next_node.only_left_link_exists
+          # binding.pry
+          @left = next_node.left
         end
       else
         # keep traversing left
@@ -152,8 +158,12 @@ class Node
       end
     elsif value > data
       if right.data == value
-        if right.left.nil? && right.left.nil?
+        next_node = right
+        # binding.pry
+        if next_node.left.nil? && next_node.right.nil?
           @right = nil
+        elsif next_node.only_right_link_exists
+          @right = next_node.right
         end
       else
       # keep traversing right
