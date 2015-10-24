@@ -23,6 +23,10 @@ class Node
     right_link_exists && left.nil?
   end
 
+  def no_links_exist
+    left.nil? && right.nil?
+  end
+
   def push(node)
     if node.data < data
       add_node_to_left_link(node)
@@ -88,7 +92,7 @@ class Node
   end
 
   def count
-    return 1 if left.nil? && right.nil?
+    return 1 if no_links_exist
 
     if only_left_link_exists
       1 + left.count
@@ -100,7 +104,7 @@ class Node
   end
 
   def sort
-    return [data] if left.nil? && right.nil?
+    return [data] if no_links_exist
 
     sorted = []
 
@@ -116,7 +120,7 @@ class Node
   end
 
   def max_height
-    return 1 if left.nil? && right.nil?
+    return 1 if no_links_exist
 
     left_height = 0
     right_height = 0

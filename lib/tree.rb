@@ -48,4 +48,18 @@ class Tree
       head.sort
     end
   end
+
+  def delete(value)
+    fail 'Cannot delete non-existent tree node' unless include?(value)
+
+    if head_only
+      @head = nil
+    else
+      head.delete(value)
+    end
+  end
+
+  def head_only
+    count == 1
+  end
 end

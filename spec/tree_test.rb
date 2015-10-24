@@ -224,8 +224,8 @@ class TreeTest < Minitest::Test
   def test_raises_exception_if_sorting_empty_tree
     bst = Tree.new
 
-    exception = assert_raises("RuntimeError") {bst.sort}
-    assert_equal("Cannot sort tree with no nodes", exception.message)
+    exception = assert_raises("RuntimeError") { bst.sort }
+    assert_equal('Cannot sort tree with no nodes', exception.message)
   end
 
   def test_returns_head_data_as_array_if_sorting_tree_with_head_only
@@ -243,5 +243,37 @@ class TreeTest < Minitest::Test
     end
 
     assert_equal [5, 6, 8, 9, 10, 12, 14], bst.sort
+  end
+
+  def test_returns_error_if_trying_to_delete_from_empty_tree
+    bst = Tree.new
+
+    exception = assert_raises("RuntimeError") { bst.delete(10) }
+    assert_equal('Cannot delete non-existent tree node', exception.message)
+  end
+
+  def test_can_delete_only_head_node
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 10, bst.head.data
+    assert_equal 1, bst.count
+
+    bst.delete(10)
+
+    refute bst.head
+  end
+
+  def test_does_not_delete_head_if_deletion_value_does_not_match
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 10, bst.head.data
+    assert_equal 1, bst.count
+
+    exception = assert_raises("RuntimeError") { bst.delete(8) }
+    assert_equal('Cannot delete non-existent tree node', exception.message)
+
+    assert_equal 1, bst.count
   end
 end
