@@ -9,6 +9,22 @@ class Node
     @data = data
   end
 
+  def left_link_exists
+    !left.nil?
+  end
+
+  def right_link_exists
+    !right.nil?
+  end
+
+  def only_left_link_exists
+    left_link_exists && right.nil?
+  end
+
+  def only_right_link_exists
+    right_link_exists && left.nil?
+  end
+
   def push(node)
     if node.data < data
       add_node_to_left_link(node)
@@ -49,22 +65,6 @@ class Node
     else
       false
     end
-  end
-
-  def left_link_exists
-    !left.nil?
-  end
-
-  def right_link_exists
-    !right.nil?
-  end
-
-  def only_left_link_exists
-    left_link_exists && right.nil?
-  end
-
-  def only_right_link_exists
-    right_link_exists && left.nil?
   end
 
   def minimum
