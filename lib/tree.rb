@@ -40,17 +40,25 @@ class Tree
   def maximum
     head ? head.maximum : nil
   end
-end
 
-if __FILE__ == $0
-  numbers = (0..1000).to_a.sample(16)
-  bst = Tree.new
-  numbers.each do |num|
-    bst.insert(num)
+  def sort
+    if head.nil?
+      raise "Cannot sort tree with no nodes"
+    else
+      head.sort
+    end
   end
-
-  puts bst.inspect
-  puts bst.count
-  puts bst.max_height
-  puts bst.include?(30)
 end
+
+# if __FILE__ == $0
+#   numbers = (0..1000).to_a.sample(16)
+#   bst = Tree.new
+#   numbers.each do |num|
+#     bst.insert(num)
+#   end
+#
+#   puts bst.inspect
+#   puts bst.count
+#   puts bst.max_height
+#   puts bst.include?(30)
+# end

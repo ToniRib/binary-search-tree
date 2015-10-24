@@ -192,4 +192,28 @@ class TreeTest < Minitest::Test
 
     assert_equal 14, bst.maximum
   end
+
+  def test_raises_exception_if_sorting_empty_tree
+    bst = Tree.new
+
+    exception = assert_raises("RuntimeError") {bst.sort}
+    assert_equal("Cannot sort tree with no nodes", exception.message)
+  end
+
+  def test_returns_head_data_as_array_if_sorting_tree_with_head_only
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal [10], bst.sort
+  end
+
+  def test_returns_sorted_array_of_tree_data
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5, 14]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert_equal [5, 6, 8, 9, 10, 12, 14], bst.sort
+  end
 end
