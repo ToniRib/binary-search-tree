@@ -54,13 +54,35 @@ class TreeTest < Minitest::Test
   end
 
   def test_returns_count_of_nodes_in_tree
-    numbers = (0..1000).to_a.sample(16)
     bst = Tree.new
+    numbers = (0..1000).to_a.sample(16)
     numbers.each do |num|
       bst.insert(num)
     end
 
     assert_equal 16, bst.count
+  end
+
+  def test_returns_max_height_of_zero_if_no_head_node
+    bst = Tree.new
+    assert_equal 0, bst.max_height
+  end
+
+  def test_returns_max_height_of_one_if_tree_contains_only_head_node
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 1, bst.max_height
+  end
+
+  def test_returns_max_height_of_tree
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert_equal 4, bst.max_height
   end
 
 end
