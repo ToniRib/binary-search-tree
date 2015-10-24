@@ -147,4 +147,26 @@ class TreeTest < Minitest::Test
     assert_equal 3, bst.depth_of(9)
   end
 
+  def test_returns_nil_as_min_value_if_no_head_exists
+    bst = Tree.new
+    assert_equal nil, bst.minimum
+  end
+
+  def test_head_as_min_value_if_only_head_exists
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 10, bst.minimum
+    assert_equal 10, bst.head.data
+  end
+
+  def test_returns_minimum_value_in_tree
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert_equal 5, bst.minimum
+  end
 end

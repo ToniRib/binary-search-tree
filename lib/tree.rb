@@ -32,6 +32,10 @@ class Tree
       head.depth(value)
     end
   end
+
+  def minimum
+    head ? head.minimum : nil
+  end
 end
 
 if __FILE__ == $0
@@ -44,4 +48,5 @@ if __FILE__ == $0
   puts bst.inspect
   puts bst.count
   puts bst.max_height
+  puts bst.include?(30)
 end
