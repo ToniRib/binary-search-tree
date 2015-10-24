@@ -123,14 +123,8 @@ class Node
     left_height = 0
     right_height = 0
 
-    if only_left_link_exists
-      left_height = 1 + left.max_height
-    elsif only_right_link_exists
-      right_height = 1 + right.max_height
-    else
-      left_height = 1 + left.max_height
-      right_height = 1 + right.max_height
-    end
+    left_height = 1 + left.max_height if left_link_exists
+    right_height = 1 + right.max_height if right_link_exists
 
     return_longest_height(left_height, right_height)
   end
