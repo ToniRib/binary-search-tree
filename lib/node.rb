@@ -8,20 +8,27 @@ class Node
     @data = data
   end
 
-  # will need to refactor
   def push(node)
     if node.data < data
-      if left.nil?
-        @left = node
-      else
-        left.push(node)
-      end
+      add_node_to_left_link(node)
     else
-      if right.nil?
-        @right = node
-      else
-        right.push(node)
-      end
+      add_node_to_right_link(node)
+    end
+  end
+
+  def add_node_to_left_link(node)
+    if left.nil?
+      @left = node
+    else
+      left.push(node)
+    end
+  end
+
+  def add_node_to_right_link(node)
+    if right.nil?
+      @right = node
+    else
+      right.push(node)
     end
   end
 

@@ -21,20 +21,6 @@ class NodeTest < Minitest::Test
     refute node.right
   end
 
-  def test_can_directly_set_left_link_as_another_node
-    node1 = Node.new(10)
-    node2 = Node.new(8)
-    node1.left = node2
-    assert_equal node2, node1.left
-  end
-
-  def test_can_directly_set_right_link_as_another_node
-    node1 = Node.new(10)
-    node2 = Node.new(12)
-    node1.right = node2
-    assert_equal node2, node1.right
-  end
-
   def test_can_use_push_method_to_set_empty_left_link
     node1 = Node.new(10)
     node2 = Node.new(8)
