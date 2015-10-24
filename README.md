@@ -11,9 +11,9 @@ The tree uses recursive methods that are located in the nodes, thus making each 
 
 * *insert(value):* inserts the given value as a new node into the tree
 * *include?(value):* returns true if the value exists in the tree & false if it doesn't
-* *depth_of(value):* returns the depth of the given value in the tree, with a depth of 1 being the head node
-* *maximum:* 
-* *minimum:*
-* *sort:*
-* *count:*
-* *max_height:*
+* *depth_of(value):* returns the depth of the given value in the tree, with a depth of 1 being the head node. Returns an error message if the value doesn't exist in the tree.
+* *maximum:* returns the maximum value in the tree & nil if the tree is empty
+* *minimum:* returns the minimum value in the tree & nil if the tree is empty
+* *sort:* returns an array of all of the tree values sorted from smallest to largest. Returns an error message if the tree is empty.
+* *count:* returns the number of nodes in the tree
+* *max_height:* returns the maximum height of the tree (depth of lowest node)
