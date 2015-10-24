@@ -41,6 +41,17 @@ class TreeTest < Minitest::Test
     assert_equal 12, bst.head.right.data
   end
 
+  def test_returns_message_if_duplicate_value_inserted_into_tree
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(8)
+    bst.insert(12)
+
+    msg = "Ignoring node with duplicate value: 8"
+
+    assert_equal msg, bst.insert(8)
+  end
+
   def test_returns_count_zero_if_there_is_no_head_node
     bst = Tree.new
     assert_equal 0, bst.count
