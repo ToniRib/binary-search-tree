@@ -107,10 +107,90 @@ class NodeTest < Minitest::Test
 
     node10.push(node8a)
     node10.push(node14)
-    
+
     msg = "Ignoring node with duplicate value: #{node8b.data}"
 
     assert_equal msg, node10.push(node8b)
+  end
+
+  def test_returns_true_if_left_link_exists
+    node2 = Node.new(2)
+    node3 = Node.new(3)
+    node1 = Node.new(1)
+
+    node2.push(node3)
+    node2.push(node1)
+
+    assert node2.left_link_exists
+  end
+
+  def test_returns_false_if_left_link_does_not_exist
+    node2 = Node.new(2)
+    node3 = Node.new(3)
+
+    node2.push(node3)
+
+    refute node2.left_link_exists
+  end
+
+  def test_returns_true_if_right_link_exists
+    node2 = Node.new(2)
+    node3 = Node.new(3)
+    node1 = Node.new(1)
+
+    node2.push(node3)
+    node2.push(node1)
+
+    assert node2.right_link_exists
+  end
+
+  def test_returns_false_if_right_link_does_not_exist
+    node2 = Node.new(2)
+    node1 = Node.new(1)
+
+    node2.push(node1)
+
+    refute node2.right_link_exists
+  end
+
+  def test_returns_true_if_only_left_link_exists
+    node2 = Node.new(2)
+    node1 = Node.new(1)
+
+    node2.push(node1)
+
+    assert node2.only_left_link_exists
+  end
+
+  def test_returns_false_to_only_left_if_both_links_exist
+    node2 = Node.new(2)
+    node3 = Node.new(3)
+    node1 = Node.new(1)
+
+    node2.push(node3)
+    node2.push(node1)
+
+    refute node2.only_left_link_exists
+  end
+
+  def test_returns_true_if_only_right_link_exists
+    node2 = Node.new(2)
+    node3 = Node.new(3)
+
+    node2.push(node3)
+
+    assert node2.only_right_link_exists
+  end
+
+  def test_returns_false_to_only_right_if_both_links_exist
+    node2 = Node.new(2)
+    node3 = Node.new(3)
+    node1 = Node.new(1)
+
+    node2.push(node3)
+    node2.push(node1)
+
+    refute node2.only_right_link_exists
   end
 
   def test_returns_true_if_node_is_equal_to_search_value

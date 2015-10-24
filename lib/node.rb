@@ -1,5 +1,6 @@
 require 'pry'
 
+# Class for nodes of a Binary Search Tree
 class Node
   attr_accessor :left, :right
   attr_reader :data
@@ -41,13 +42,29 @@ class Node
   def equal_to?(value)
     return true if data == value
 
-    if value < data && !left.nil?
+    if value < data && left_link_exists
       left.equal_to?(value)
-    elsif value > data && !right.nil?
+    elsif value > data && right_link_exists
       right.equal_to?(value)
     else
       false
     end
+  end
+
+  def left_link_exists
+    !left.nil?
+  end
+
+  def right_link_exists
+    !right.nil?
+  end
+
+  def only_left_link_exists
+    left_link_exists && right.nil?
+  end
+
+  def only_right_link_exists
+    right_link_exists && left.nil?
   end
 
   def minimum
@@ -61,7 +78,7 @@ class Node
   end
 
   def depth(value)
-    raise "Value does not exist in tree" if !equal_to?(value)
+    fail 'Value does not exist in tree' unless equal_to?(value)
 
     return 1 if data == value
 
@@ -75,9 +92,9 @@ class Node
   def count
     return 1 if left.nil? && right.nil?
 
-    if !left.nil? && right.nil?
+    if only_left_link_exists
       1 + left.count
-    elsif !right.nil? && left.nil?
+    elsif only_right_link_exists
       1 + right.count
     else
       1 + left.count + right.count
@@ -89,9 +106,9 @@ class Node
     return [data] if left.nil? && right.nil?
 
     sorted = []
-    if !left.nil? && right.nil?
+    if only_left_link_exists
       sorted.push(left.sort).push(data)
-    elsif !right.nil? && left.nil?
+    elsif only_right_link_exists
       sorted.push(data).push(right.sort)
     else
       sorted.push(left.sort).push(data).push(right.sort)
@@ -106,9 +123,9 @@ class Node
     left_height = 0
     right_height = 0
 
-    if !left.nil? && right.nil?
+    if only_left_link_exists
       left_height = 1 + left.max_height
-    elsif !right.nil? && left.nil?
+    elsif only_right_link_exists
       right_height = 1 + right.max_height
     else
       left_height = 1 + left.max_height

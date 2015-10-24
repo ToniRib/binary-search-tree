@@ -1,6 +1,6 @@
-require 'pry'
 require_relative 'node'
 
+# Class for a Binary Search Tree
 class Tree
   attr_reader :head
 
@@ -27,7 +27,7 @@ class Tree
 
   def depth_of(value)
     if head.nil?
-      raise "Value does not exist in tree, because tree has no head"
+      fail 'Value does not exist in tree, because tree has no head'
     else
       head.depth(value)
     end
@@ -43,7 +43,7 @@ class Tree
 
   def sort
     if head.nil?
-      raise "Cannot sort tree with no nodes"
+      fail 'Cannot sort tree with no nodes'
     else
       head.sort
     end

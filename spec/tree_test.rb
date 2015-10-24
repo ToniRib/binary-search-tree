@@ -50,6 +50,55 @@ class TreeTest < Minitest::Test
     msg = "Ignoring node with duplicate value: 8"
 
     assert_equal msg, bst.insert(8)
+    assert_equal 3, bst.count
+  end
+
+  def tree_keeps_adding_nodes_after_duplicate_node_encountered
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(8)
+    bst.insert(12)
+
+    msg = "Ignoring node with duplicate value: 8"
+
+    assert_equal msg, bst.insert(8)
+
+    bst.insert(9)
+    bst.insert(14)
+
+    assert_equal 5, bst.count
+  end
+
+  def test_returns_true_if_left_link_exists
+
+  end
+
+  def test_returns_false_if_left_link_does_not_exist
+
+  end
+
+  def test_returns_true_if_right_link_exists
+
+  end
+
+  def test_returns_false_if_right_link_does_not_exist
+
+  end
+
+  def test_returns_true_if_only_left_link_exists
+
+  end
+
+  def test_returns_false_if_only_left_link_does_not_exist
+
+  end
+
+  def test_returns_true_if_only_right_link_exists
+
+  end
+
+  def test_returns_false_if_only_right_link_does_not_exist
+
   end
 
   def test_returns_count_zero_if_there_is_no_head_node
