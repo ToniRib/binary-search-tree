@@ -277,6 +277,18 @@ class TreeTest < Minitest::Test
     assert_equal 1, bst.count
   end
 
+  def test_does_not_delete_anything_if_value_does_not_exist_in_tree
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(8)
+    bst.insert(12)
+
+    exception = assert_raises("RuntimeError") { bst.delete(6) }
+    assert_equal('Cannot delete non-existent tree node', exception.message)
+
+    assert_equal 3, bst.count
+  end
+
   def test_deletes_left_childless_node
     bst = Tree.new
     bst.insert(10)

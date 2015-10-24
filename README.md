@@ -17,6 +17,7 @@ The tree uses recursive methods that are located in the nodes, thus making each 
 * *sort:* returns an array of all of the tree values sorted from smallest to largest. Returns an error message if the tree is empty.
 * *count:* returns the number of nodes in the tree
 * *max_height:* returns the maximum height of the tree (depth of lowest node)
+* *delete(value):* deletes the node in the tree with the given value. Returns an error message if the tree is empty or if the node doesn't exist. Uses the [in-order successor node](https://en.wikipedia.org/wiki/Binary_search_tree#Deletion) for the deletion.
 
 ### Example
 
@@ -41,6 +42,12 @@ bst.count
 => 7
 bst.max_height
 => 3
+bst.delete(12)
+=> 14
+bst.count
+=> 6
+bst.head.right.data
+=> 14
 ```
 
 

@@ -1,5 +1,3 @@
-require 'pry'
-
 # Class for nodes of a Binary Search Tree
 class Node
   attr_accessor :left, :right, :data
@@ -146,18 +144,6 @@ class Node
     end
   end
 
-  def replace_node(next_node)
-    if next_node.only_left_link_exists
-      @left = next_node.left
-    elsif next_node.only_right_link_exists
-      @right = next_node.right
-    else
-      inorder_successor = find_inorder_successor(next_node)
-      next_node.delete(inorder_successor)
-      next_node.data = inorder_successor
-    end
-  end
-
   def search_left_branch(value)
     if left.data == value
       if left.no_links_exist
@@ -178,7 +164,19 @@ class Node
         replace_node(right)
       end
     else
-    right.delete(value)
+      right.delete(value)
+    end
+  end
+
+  def replace_node(next_node)
+    if next_node.only_left_link_exists
+      @left = next_node.left
+    elsif next_node.only_right_link_exists
+      @right = next_node.right
+    else
+      inorder_successor = find_inorder_successor(next_node)
+      next_node.delete(inorder_successor)
+      next_node.data = inorder_successor
     end
   end
 
