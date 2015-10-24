@@ -36,6 +36,10 @@ class Tree
   def minimum
     head ? head.minimum : nil
   end
+
+  def maximum
+    head ? head.maximum : nil
+  end
 end
 
 if __FILE__ == $0

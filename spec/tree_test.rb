@@ -169,4 +169,27 @@ class TreeTest < Minitest::Test
 
     assert_equal 5, bst.minimum
   end
+
+  def test_returns_nil_as_max_value_if_no_head_exists
+    bst = Tree.new
+    assert_equal nil, bst.maximum
+  end
+
+  def test_head_as_max_value_if_only_head_exists
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 10, bst.maximum
+    assert_equal 10, bst.head.data
+  end
+
+  def test_returns_maximum_value_in_tree
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5, 14]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert_equal 14, bst.maximum
+  end
 end
