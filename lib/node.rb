@@ -1,5 +1,3 @@
-require 'pry'
-
 # Class for nodes of a Binary Search Tree
 class Node
   attr_accessor :left, :right
