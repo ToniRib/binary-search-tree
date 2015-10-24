@@ -22,7 +22,7 @@ class Tree
   end
 
   def include?(value)
-    head ? head.equal_to?(value) : false
+    head ? head.include?(value) : false
   end
 
   def depth_of(value)

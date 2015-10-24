@@ -195,7 +195,7 @@ class NodeTest < Minitest::Test
   def test_returns_true_if_node_is_equal_to_search_value
     node = Node.new(10)
 
-    assert node.equal_to?(10)
+    assert node.include?(10)
   end
 
   def test_returns_true_if_left_link_is_equal_to_search_value
@@ -204,7 +204,7 @@ class NodeTest < Minitest::Test
 
     node1.push(node2)
 
-    assert node1.equal_to?(8)
+    assert node1.include?(8)
   end
 
   def test_returns_true_if_right_link_is_equal_to_search_value
@@ -213,7 +213,7 @@ class NodeTest < Minitest::Test
 
     node1.push(node2)
 
-    assert node1.equal_to?(12)
+    assert node1.include?(12)
   end
 
   def test_returns_true_if_value_is_found_in_left_side_of_tree
@@ -232,7 +232,7 @@ class NodeTest < Minitest::Test
     node10.push(node12)
     node10.push(node16)
 
-    assert node10.equal_to?(9)
+    assert node10.include?(9)
   end
 
   def test_returns_true_if_value_is_found_in_right_side_of_tree
@@ -251,7 +251,7 @@ class NodeTest < Minitest::Test
     node10.push(node12)
     node10.push(node16)
 
-    assert node10.equal_to?(12)
+    assert node10.include?(12)
   end
 
   def test_returns_false_if_value_is_not_found_in_left_side_of_tree
@@ -270,7 +270,7 @@ class NodeTest < Minitest::Test
     node10.push(node12)
     node10.push(node16)
 
-    assert_equal false, node10.equal_to?(3)
+    assert_equal false, node10.include?(3)
   end
 
   def test_returns_false_if_value_is_not_found_in_right_side_of_tree
@@ -289,7 +289,7 @@ class NodeTest < Minitest::Test
     node10.push(node12)
     node10.push(node16)
 
-    assert_equal false, node10.equal_to?(18)
+    assert_equal false, node10.include?(18)
   end
 
   def test_node_with_no_links_returns_itself_as_minimum
@@ -737,7 +737,7 @@ class NodeTest < Minitest::Test
     node1.delete(6)
 
     refute node1.left
-    refute node1.equal_to?(6)
+    refute node1.include?(6)
   end
 
   def test_deletes_right_node_with_no_links
@@ -751,7 +751,7 @@ class NodeTest < Minitest::Test
     node1.delete(12)
 
     refute node1.right
-    refute node1.equal_to?(12)
+    refute node1.include?(12)
   end
 
   def test_can_delete_a_child_node_with_no_links
@@ -771,7 +771,7 @@ class NodeTest < Minitest::Test
     node10.delete(9)
 
     refute node8.right
-    refute node10.equal_to?(9)
+    refute node10.include?(9)
   end
 
   def test_can_delete_a_node_with_a_left_link
@@ -792,7 +792,7 @@ class NodeTest < Minitest::Test
     node10.delete(7)
 
     assert_equal node5, node10.left
-    refute node10.equal_to?(7)
+    refute node10.include?(7)
   end
 
   def test_can_delete_a_node_with_a_right_link
@@ -813,7 +813,7 @@ class NodeTest < Minitest::Test
     node10.delete(14)
 
     assert_equal node18, node10.right
-    refute node10.equal_to?(14)
+    refute node10.include?(14)
   end
 
 
@@ -834,7 +834,7 @@ class NodeTest < Minitest::Test
     node10.delete(7)
 
     assert_equal 9, node7.data
-    refute node10.equal_to?(7)
+    refute node10.include?(7)
   end
 
   def test_can_delete_a_node_on_right_with_both_links
@@ -866,6 +866,6 @@ class NodeTest < Minitest::Test
     node10.delete(14)
 
     assert_equal 15, node14.data
-    refute node10.equal_to?(14)
+    refute node10.include?(14)
   end
 end

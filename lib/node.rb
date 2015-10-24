@@ -60,13 +60,13 @@ class Node
     "Ignoring node with duplicate value: #{node.data}"
   end
 
-  def equal_to?(value)
+  def include?(value)
     return true if data == value
 
     if value < data && left_link_exists
-      left.equal_to?(value)
+      left.include?(value)
     elsif value > data && right_link_exists
-      right.equal_to?(value)
+      right.include?(value)
     else
       false
     end
@@ -83,7 +83,7 @@ class Node
   end
 
   def depth(value)
-    fail 'Value does not exist in tree' unless equal_to?(value)
+    fail 'Value does not exist in tree' unless include?(value)
 
     return 1 if data == value
 

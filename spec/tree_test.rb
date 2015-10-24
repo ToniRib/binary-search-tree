@@ -296,4 +296,19 @@ class TreeTest < Minitest::Test
 
     refute bst.head.right
   end
+
+  def test_deletes_node_with_both_links
+    bst = Tree.new
+    numbers = [10, 7, 18, 5, 9, 14, 20, 13, 16, 15, 17]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert bst.include?(14)
+
+    bst.delete(14)
+
+    refute bst.include?(14)
+    assert_equal 15, bst.head.right.left.data
+  end
 end
