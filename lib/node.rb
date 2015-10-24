@@ -2,8 +2,7 @@ require 'pry'
 
 # Class for nodes of a Binary Search Tree
 class Node
-  attr_accessor :left, :right
-  attr_reader :data
+  attr_accessor :left, :right, :data
 
   def initialize(data)
     @data = data
@@ -151,6 +150,12 @@ class Node
         elsif next_node.only_left_link_exists
           # binding.pry
           @left = next_node.left
+        elsif next_node.only_right_link_exists
+          @right = next_node.right
+        else
+          # both nodes exist
+          next_node.data = next_node.left.data
+          next_node.left = next_node.left.left
         end
       else
         # keep traversing left
@@ -164,6 +169,12 @@ class Node
           @right = nil
         elsif next_node.only_right_link_exists
           @right = next_node.right
+        elsif next_node.only_left_link_exists
+          @left = next_node.left
+        else
+          # both nodes exist
+          next_node.data = next_node.right.data
+          next_node.right = next_node.right.right
         end
       else
       # keep traversing right

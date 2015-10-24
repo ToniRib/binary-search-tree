@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/node'
 
+require 'pry'
+
 class NodeTest < Minitest::Test
   def test_can_create_a_node_with_data
     node = Node.new(10)
@@ -735,6 +737,7 @@ class NodeTest < Minitest::Test
     node1.delete(6)
 
     refute node1.left
+    refute node1.equal_to?(6)
   end
 
   def test_deletes_right_node_with_no_links
@@ -748,6 +751,7 @@ class NodeTest < Minitest::Test
     node1.delete(12)
 
     refute node1.right
+    refute node1.equal_to?(12)
   end
 
   def test_can_delete_a_child_node_with_no_links
@@ -767,6 +771,7 @@ class NodeTest < Minitest::Test
     node10.delete(9)
 
     refute node8.right
+    refute node10.equal_to?(9)
   end
 
   def test_can_delete_a_node_with_a_left_link
@@ -787,6 +792,7 @@ class NodeTest < Minitest::Test
     node10.delete(7)
 
     assert_equal node5, node10.left
+    refute node10.equal_to?(7)
   end
 
   def test_can_delete_a_node_with_a_right_link
@@ -807,5 +813,59 @@ class NodeTest < Minitest::Test
     node10.delete(14)
 
     assert_equal node18, node10.right
+    refute node10.equal_to?(14)
+  end
+
+
+  def test_can_delete_a_node_on_left_with_both_links
+    node10 = Node.new(10)
+    node7 = Node.new(7)
+    node14 = Node.new(14)
+    node5 = Node.new(5)
+    node9 = Node.new(9)
+
+    node10.push(node7)
+    node10.push(node14)
+    node10.push(node5)
+    node10.push(node9)
+
+    assert_equal node7, node10.left
+
+    node10.delete(7)
+
+    assert_equal 5, node7.data
+    refute node10.equal_to?(7)
+    p node10
+  end
+
+  def test_can_delete_a_node_on_right_with_both_links
+    node10 = Node.new(10)
+    node7 = Node.new(7)
+    node18 = Node.new(18)
+    node5 = Node.new(5)
+    node9 = Node.new(9)
+    node14 = Node.new(14)
+    node20 = Node.new(20)
+    node13 = Node.new(13)
+    node16 = Node.new(16)
+    node17 = Node.new(17)
+
+    node10.push(node7)
+    node10.push(node18)
+    node10.push(node5)
+    node10.push(node9)
+    node10.push(node14)
+    node10.push(node20)
+    node10.push(node13)
+    node10.push(node16)
+    node10.push(node17)
+
+    assert_equal node14, node18.left
+
+    node10.delete(14)
+
+    assert_equal 13, node14.data
+    refute node10.equal_to?(14)
+    p node10
   end
 end
