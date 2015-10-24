@@ -833,7 +833,7 @@ class NodeTest < Minitest::Test
 
     node10.delete(7)
 
-    assert_equal 5, node7.data
+    assert_equal 9, node7.data
     refute node10.equal_to?(7)
   end
 
@@ -848,6 +848,7 @@ class NodeTest < Minitest::Test
     node13 = Node.new(13)
     node16 = Node.new(16)
     node17 = Node.new(17)
+    node15 = Node.new(15)
 
     node10.push(node7)
     node10.push(node18)
@@ -858,12 +859,13 @@ class NodeTest < Minitest::Test
     node10.push(node13)
     node10.push(node16)
     node10.push(node17)
+    node10.push(node15)
 
     assert_equal node14, node18.left
 
     node10.delete(14)
 
-    assert_equal 13, node14.data
+    assert_equal 15, node14.data
     refute node10.equal_to?(14)
   end
 end

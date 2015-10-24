@@ -152,20 +152,18 @@ class Node
     elsif next_node.only_right_link_exists
       @right = next_node.right
     else
-      # both nodes exist
-      # TODO: use actual logic lol
-      next_node.data = next_node.left.data
-      next_node.left = next_node.left.left
+      inorder_successor = find_inorder_successor(next_node)
+      next_node.delete(inorder_successor)
+      next_node.data = inorder_successor
     end
   end
 
   def search_left_branch(value)
     if left.data == value
-      next_node = left
-      if next_node.no_links_exist
+      if left.no_links_exist
         @left = nil
       else
-        replace_node(next_node)
+        replace_node(left)
       end
     else
       left.delete(value)
@@ -174,14 +172,17 @@ class Node
 
   def search_right_branch(value)
     if right.data == value
-      next_node = right
-      if next_node.no_links_exist
+      if right.no_links_exist
         @right = nil
       else
-        replace_node(next_node)
+        replace_node(right)
       end
     else
     right.delete(value)
     end
+  end
+
+  def find_inorder_successor(next_node)
+    next_node.right.minimum
   end
 end
