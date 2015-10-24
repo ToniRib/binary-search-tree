@@ -18,6 +18,32 @@ The tree uses recursive methods that are located in the nodes, thus making each 
 * *count:* returns the number of nodes in the tree
 * *max_height:* returns the maximum height of the tree (depth of lowest node)
 
+### Example
+
+```
+bst = Tree.new
+numbers = [10, 12, 8, 9, 6, 14, 11]
+numbers.each do |num|
+  bst.insert(num)
+end
+
+bst.include?(9)
+=> true
+bst.depth_of(11)
+=> 3
+bst.maximum
+=> 14
+bst.minimum
+=> 6
+bst.sort
+=> [6, 8, 9, 10, 11, 12, 14]
+bst.count
+=> 7
+bst.max_height
+=> 3
+```
+
+
 ### Test Suite
 
 The Node and Tree classes each have a corresponding testing file written with [minitest](https://github.com/seattlerb/minitest) which can be run from the terminal using mrspec:
