@@ -835,7 +835,6 @@ class NodeTest < Minitest::Test
 
     assert_equal 5, node7.data
     refute node10.equal_to?(7)
-    p node10
   end
 
   def test_can_delete_a_node_on_right_with_both_links
@@ -866,6 +865,5 @@ class NodeTest < Minitest::Test
 
     assert_equal 13, node14.data
     refute node10.equal_to?(14)
-    p node10
   end
 end

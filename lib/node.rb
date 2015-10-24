@@ -139,50 +139,49 @@ class Node
   end
 
   def delete(value)
-    # binding.pry
     if value < data
-      if left.data == value
-        next_node = left
-        # it's the left child of the current node
-        if next_node.left.nil? && next_node.right.nil?
-          # no children
-          @left = nil
-        elsif next_node.only_left_link_exists
-          # binding.pry
-          @left = next_node.left
-        elsif next_node.only_right_link_exists
-          @right = next_node.right
-        else
-          # both nodes exist
-          next_node.data = next_node.left.data
-          next_node.left = next_node.left.left
-        end
-      else
-        # keep traversing left
-        left.delete(value)
-      end
+      search_left_branch(value)
     elsif value > data
-      if right.data == value
-        next_node = right
-        # binding.pry
-        if next_node.left.nil? && next_node.right.nil?
-          @right = nil
-        elsif next_node.only_right_link_exists
-          @right = next_node.right
-        elsif next_node.only_left_link_exists
-          @left = next_node.left
-        else
-          # both nodes exist
-          next_node.data = next_node.right.data
-          next_node.right = next_node.right.right
-        end
+      search_right_branch(value)
+    end
+  end
+
+  def replace_node(next_node)
+    if next_node.only_left_link_exists
+      @left = next_node.left
+    elsif next_node.only_right_link_exists
+      @right = next_node.right
+    else
+      # both nodes exist
+      # TODO: use actual logic lol
+      next_node.data = next_node.left.data
+      next_node.left = next_node.left.left
+    end
+  end
+
+  def search_left_branch(value)
+    if left.data == value
+      next_node = left
+      if next_node.no_links_exist
+        @left = nil
       else
-      # keep traversing right
-      right.delete(value)
+        replace_node(next_node)
       end
     else
-      # delete node somehow...
-      # not sure if this is necessary
+      left.delete(value)
+    end
+  end
+
+  def search_right_branch(value)
+    if right.data == value
+      next_node = right
+      if next_node.no_links_exist
+        @right = nil
+      else
+        replace_node(next_node)
+      end
+    else
+    right.delete(value)
     end
   end
 end
