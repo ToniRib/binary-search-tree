@@ -1,3 +1,5 @@
+require 'pry'
+
 # Class for nodes of a Binary Search Tree
 class Node
   attr_accessor :left, :right
@@ -133,5 +135,33 @@ class Node
 
   def return_longest_height(left, right)
     left < right ? right : left
+  end
+
+  def delete(value)
+    # binding.pry
+    if value < data
+      if left.data == value
+        # it's the left child of the current node
+        if left.left.nil? && left.right.nil?
+          # no children
+          @left = nil
+        end
+      else
+        # keep traversing left
+        left.delete(value)
+      end
+    elsif value > data
+      if right.data == value
+        if right.left.nil? && right.left.nil?
+          @right = nil
+        end
+      else
+      # keep traversing right
+      right.delete(value)
+      end
+    else
+      # delete node somehow...
+      # not sure if this is necessary
+    end
   end
 end

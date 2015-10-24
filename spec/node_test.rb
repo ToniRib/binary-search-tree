@@ -723,4 +723,30 @@ class NodeTest < Minitest::Test
 
     assert_equal 5, node10.max_height
   end
+
+  def test_deletes_left_node_with_no_links
+    node1 = Node.new(10)
+    node2 = Node.new(6)
+
+    node1.push(node2)
+
+    assert_equal node2, node1.left
+
+    node1.delete(6)
+
+    refute node1.left
+  end
+
+  def test_deletes_right_node_with_no_links
+    node1 = Node.new(10)
+    node2 = Node.new(12)
+
+    node1.push(node2)
+
+    assert_equal node2, node1.right
+
+    node1.delete(12)
+
+    refute node1.right
+  end
 end

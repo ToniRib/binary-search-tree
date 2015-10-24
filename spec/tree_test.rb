@@ -276,4 +276,24 @@ class TreeTest < Minitest::Test
 
     assert_equal 1, bst.count
   end
+
+  def test_deletes_left_childless_node
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(8)
+
+    bst.delete(8)
+
+    refute bst.head.left
+  end
+
+  def test_deletes_right_childless_node
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(12)
+
+    bst.delete(12)
+
+    refute bst.head.right
+  end
 end
