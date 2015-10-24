@@ -9,4 +9,11 @@ The tree uses recursive methods that are located in the nodes, thus making each 
 
 ### Available Tree Methods
 
-* *insert:* :  
+* *insert(value):* inserts the given value as a new node into the tree
+* *include?(value):* returns true if the value exists in the tree & false if it doesn't
+* *depth_of(value):* returns the depth of the given value in the tree, with a depth of 1 being the head node
+* *maximum:* 
+* *minimum:*
+* *sort:*
+* *count:*
+* *max_height:*
