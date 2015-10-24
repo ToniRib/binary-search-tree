@@ -85,4 +85,30 @@ class TreeTest < Minitest::Test
     assert_equal 4, bst.max_height
   end
 
+  def test_returns_false_for_include_if_tree_is_empty
+    bst = Tree.new
+
+    refute bst.include?(3)
+  end
+
+  def test_returns_true_if_tree_contains_value
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert bst.include?(6)
+  end
+
+  def test_returns_false_if_tree_does_not_contain_value
+    bst = Tree.new
+    numbers = [10, 12, 8, 9, 6, 5]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    refute bst.include?(3)
+  end
+
 end

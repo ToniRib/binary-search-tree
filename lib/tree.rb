@@ -20,6 +20,10 @@ class Tree
   def max_height
     head ? head.max_height : 0
   end
+
+  def include?(value)
+    head ? head.equal_to?(value) : false
+  end
 end
 
 if __FILE__ == $0
