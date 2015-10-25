@@ -71,7 +71,7 @@ The second argument `outputs/sorted_numbers.txt` is another text file which cont
 
 ### Test Suite
 
-The Node and Tree classes each have a corresponding testing file written with [minitest](https://github.com/seattlerb/minitest) which can be run from the terminal using mrspec:
+The Node, Tree, and FileReader classes each have a corresponding testing file written with [minitest](https://github.com/seattlerb/minitest) which can be run from the terminal using mrspec:
 
 ```
 $ mrspec spec/tree_test.rb
