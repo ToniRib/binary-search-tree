@@ -7,6 +7,7 @@ class Tree
   def insert(data)
     node = Node.new(data)
     if head.nil?
+      check_data(node)
       @head = node
     else
       fail 'Cannot mix data types in tree' if data_type(node) != data_type(head)
@@ -22,6 +23,10 @@ class Tree
     else
       :unknown
     end
+  end
+
+  def check_data(node)
+    fail 'Unknown data type rejected from tree' if data_type(node) == :unknown
   end
 
   def count

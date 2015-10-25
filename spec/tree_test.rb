@@ -433,4 +433,13 @@ class TreeTest < Minitest::Test
 
     assert_equal 3, bst.count
   end
+
+  def test_tree_does_not_allow_unknown_data_type_as_head
+    bst = Tree.new
+
+    exception = assert_raises("RuntimeError") { bst.insert([1, 2, 3]) }
+    assert_equal('Unknown data type rejected from tree', exception.message)
+
+    assert_equal 0, bst.count
+  end
 end
