@@ -7,6 +7,8 @@ The project creates a binary search tree by adding nodes (the first node being t
 
 The tree uses recursive methods that are located in the nodes, thus making each node 'intelligent' in that it passes along a query to one or both of its links. Nodes have no knowledge of any incoming links, only of their outgoing left and right links.
 
+Additionally, the tree allows only numbers (float or integer) or strings, but not both. Attempting to add a node whose data is a string to a tree whose head node contains a number will result in an error and the rejection of that node. This holds true if the head node is a string and the node trying to be added is a number. It is possible to continue adding nodes after a rejection, but they must be of the correct data type.
+
 ### Available Tree Methods
 
 * *insert(value):* inserts the given value as a new node into the tree
