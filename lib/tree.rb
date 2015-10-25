@@ -1,7 +1,5 @@
 require_relative 'node'
 
-require 'pry'
-
 # Class for a Binary Search Tree
 class Tree
   attr_reader :head, :head_data_type

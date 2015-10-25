@@ -2,8 +2,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/tree'
 
-require 'pry'
-
 class TreeTest < Minitest::Test
   def test_can_add_a_head_node
     bst = Tree.new
@@ -417,5 +415,22 @@ class TreeTest < Minitest::Test
     assert_equal('Cannot mix data types in tree', exception.message)
 
     assert_equal 1, bst.count
+  end
+
+  def test_tree_allows_new_nodes_after_rejecting_one
+    bst = Tree.new
+    bst.insert('b')
+
+    assert_equal :string, bst.head_data_type
+
+    exception = assert_raises("RuntimeError") { bst.insert(10) }
+    assert_equal('Cannot mix data types in tree', exception.message)
+
+    assert_equal 1, bst.count
+
+    bst.insert('c')
+    bst.insert('a')
+
+    assert_equal 3, bst.count
   end
 end
