@@ -2,9 +2,14 @@
 class FileReader
   def read(binary_search_tree)
     filename = ARGV[0]
+
     File.open(filename).each_line do |line|
       data = convert(line.chomp)
-      binary_search_tree.insert(data)
+      begin
+        binary_search_tree.insert(data)
+      rescue
+        puts "Cannot add #{data} to tree: incorrect data type."
+      end
     end
   end
 
