@@ -104,6 +104,18 @@ class Node
     end
   end
 
+  def count_leaves
+    return 1 if no_links_exist
+    
+    if only_left_link_exists
+      left.count_leaves
+    elsif only_right_link_exists
+      right.count_leaves
+    else
+      left.count_leaves + right.count_leaves
+    end
+  end
+
   def sort
     return [data] if no_links_exist
 

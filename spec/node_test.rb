@@ -2,8 +2,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/node'
 
-require 'pry'
-
 class NodeTest < Minitest::Test
   def test_can_create_a_node_with_data
     node = Node.new(10)
@@ -867,5 +865,42 @@ class NodeTest < Minitest::Test
 
     assert_equal 15, node14.data
     refute node10.include?(14)
+  end
+
+  def test_counts_one_leaf_if_only_one_node_exists
+    node = Node.new(10)
+
+    assert_equal 1, node.count_leaves
+  end
+
+  def test_counts_one_leaf_if_node_has_left_link_only
+    node = Node.new(10)
+    node.push(Node.new(8))
+
+    assert_equal 1, node.count_leaves
+  end
+
+  def test_counts_one_leaf_if_node_has_right_link_only
+    node = Node.new(10)
+    node.push(Node.new(12))
+
+    assert_equal 1, node.count_leaves
+  end
+
+  def test_counts_two_leaves_if_node_has_both_links
+    node = Node.new(10)
+    node.push(Node.new(12))
+    node.push(Node.new(8))
+
+    assert_equal 2, node.count_leaves
+  end
+
+  def test_counts_correct_number_of_leaves_on_tree
+    node = Node.new(10)
+    [8, 12, 6, 9, 5, 18, 11, 16].each do |num|
+      node.push(Node.new(num))
+    end
+
+    assert_equal 4, node.count_leaves
   end
 end
