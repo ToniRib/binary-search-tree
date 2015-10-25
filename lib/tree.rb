@@ -2,15 +2,14 @@ require_relative 'node'
 
 # Class for a Binary Search Tree
 class Tree
-  attr_reader :head, :head_data_type
+  attr_reader :head
 
   def insert(data)
     node = Node.new(data)
     if head.nil?
       @head = node
-      @head_data_type = data_type(head)
     else
-      fail 'Cannot mix data types in tree' if data_type(node) != head_data_type
+      fail 'Cannot mix data types in tree' if data_type(node) != data_type(head)
       head.push(node)
     end
   end
