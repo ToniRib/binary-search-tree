@@ -1,8 +1,15 @@
 require_relative 'node'
+require_relative 'file_reader'
+
+require 'pry'
 
 # Class for a Binary Search Tree
 class Tree
-  attr_reader :head
+  attr_reader :head, :reader
+
+  def initialize
+    @reader = FileReader.new
+  end
 
   def insert(data)
     node = Node.new(data)
@@ -82,4 +89,10 @@ class Tree
   def head_only
     count == 1
   end
+end
+
+if __FILE__ == $0
+  bst = Tree.new
+  bst.reader.read(bst)
+  p bst.sort
 end
