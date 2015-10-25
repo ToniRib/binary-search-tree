@@ -323,4 +323,52 @@ class TreeTest < Minitest::Test
     refute bst.include?(14)
     assert_equal 15, bst.head.right.left.data
   end
+
+  def test_returns_0_for_count_leaves_if_head_does_not_exit
+    bst = Tree.new
+
+    assert_equal 0, bst.count_leaves
+  end
+
+  def test_returns_one_leaf_if_only_head_exists
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal 1, bst.count_leaves
+  end
+
+  def test_returns_one_leaf_if_head_has_left_link_only
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(8)
+
+    assert_equal 1, bst.count_leaves
+  end
+
+  def test_returns_one_leaf_if_head_has_right_link_only
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(12)
+
+    assert_equal 1, bst.count_leaves
+  end
+
+  def test_returns_two_leaves_if_head_has_both_links
+    bst = Tree.new
+    bst.insert(10)
+    bst.insert(8)
+    bst.insert(12)
+
+    assert_equal 2, bst.count_leaves
+  end
+
+  def test_returns_correct_leaf_count
+    bst = Tree.new
+    numbers = [10, 7, 18, 5, 9, 14, 20, 13, 16, 15, 17]
+    numbers.each do |num|
+      bst.insert(num)
+    end
+
+    assert_equal 6, bst.count_leaves
+  end
 end

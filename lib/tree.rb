@@ -17,6 +17,10 @@ class Tree
     head ? head.count : 0
   end
 
+  def count_leaves
+    head ? head.count_leaves : 0
+  end
+
   def max_height
     head ? head.max_height : 0
   end
