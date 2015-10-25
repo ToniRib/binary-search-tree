@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/tree'
 
-# TODO: incoming strings or integers, but not both
+require 'pry'
 
 class TreeTest < Minitest::Test
   def test_can_add_a_head_node
@@ -372,5 +372,50 @@ class TreeTest < Minitest::Test
     end
 
     assert_equal 6, bst.count_leaves
+  end
+
+  def test_integer_head_node_sets_head_data_type_to_number
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal :number, bst.head_data_type
+  end
+
+  def test_float_head_node_sets_head_data_type_to_number
+    bst = Tree.new
+    bst.insert(10.12)
+
+    assert_equal :number, bst.head_data_type
+  end
+
+  def test_string_head_node_sets_head_data_type_to_string
+    bst = Tree.new
+    bst.insert('a')
+
+    assert_equal :string, bst.head_data_type
+  end
+
+  def test_rejects_string_if_head_node_is_number
+    bst = Tree.new
+    bst.insert(10)
+
+    assert_equal :number, bst.head_data_type
+
+    exception = assert_raises("RuntimeError") { bst.insert('b') }
+    assert_equal('Cannot mix data types in tree', exception.message)
+
+    assert_equal 1, bst.count
+  end
+
+  def test_rejects_number_if_head_node_is_string
+    bst = Tree.new
+    bst.insert('b')
+
+    assert_equal :string, bst.head_data_type
+
+    exception = assert_raises("RuntimeError") { bst.insert(10) }
+    assert_equal('Cannot mix data types in tree', exception.message)
+
+    assert_equal 1, bst.count
   end
 end
