@@ -106,7 +106,7 @@ class Node
 
   def count_leaves
     return 1 if no_links_exist
-    
+
     if only_left_link_exists
       left.count_leaves
     elsif only_right_link_exists
@@ -158,11 +158,7 @@ class Node
 
   def search_left_branch(value)
     if left.data == value
-      if left.no_links_exist
-        @left = nil
-      else
-        replace_node(left)
-      end
+      left.no_links_exist ? @left = nil : replace_node(left)
     else
       left.delete(value)
     end
@@ -170,11 +166,7 @@ class Node
 
   def search_right_branch(value)
     if right.data == value
-      if right.no_links_exist
-        @right = nil
-      else
-        replace_node(right)
-      end
+      right.no_links_exist ? @right = nil : replace_node(right)
     else
       right.delete(value)
     end
