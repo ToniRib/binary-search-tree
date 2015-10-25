@@ -1,14 +1,14 @@
 require_relative 'node'
 require_relative 'file_reader'
-
-require 'pry'
+require_relative 'file_writer'
 
 # Class for a Binary Search Tree
 class Tree
-  attr_reader :head, :reader
+  attr_reader :head, :reader, :writer
 
   def initialize
     @reader = FileReader.new
+    @writer = FileWriter.new
   end
 
   def insert(data)
@@ -94,5 +94,6 @@ end
 if __FILE__ == $0
   bst = Tree.new
   bst.reader.read(bst)
-  p bst.sort
+  bst.writer.write(bst.sort)
+  puts "Create file #{ARGV[1]} with sorted data from #{ARGV[0]}"
 end
