@@ -176,10 +176,14 @@ class Node
     elsif next_node.only_right_link_exists
       @right = next_node.right
     else
-      inorder_successor = find_inorder_successor(next_node)
-      next_node.delete(inorder_successor)
-      next_node.data = inorder_successor
+      replace_with_inorder_successor(next_node)
     end
+  end
+
+  def replace_with_inorder_successor(next_node)
+    inorder_successor = find_inorder_successor(next_node)
+    next_node.delete(inorder_successor)
+    next_node.data = inorder_successor
   end
 
   def find_inorder_successor(next_node)
