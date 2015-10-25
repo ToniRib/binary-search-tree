@@ -1,6 +1,4 @@
 # Class for nodes of a Binary Search Tree
-
-require 'pry'
 class Node
   attr_accessor :left, :right, :data
 
@@ -160,13 +158,13 @@ class Node
 
   def search_branch(branch, value)
     if branch.data == value
-      branch.no_links_exist ? set_to_nil(branch) : replace_node(branch)
+      branch.no_links_exist ? remove_node(branch) : replace_node(branch)
     else
       branch.delete(value)
     end
   end
 
-  def set_to_nil(branch)
+  def remove_node(branch)
     branch == left ? @left = nil : @right = nil
   end
 

@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/tree'
 
+# TODO: incoming strings or integers, but not both
+
 class TreeTest < Minitest::Test
   def test_can_add_a_head_node
     bst = Tree.new
