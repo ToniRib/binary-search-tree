@@ -16,6 +16,7 @@ The tree uses recursive methods that are located in the nodes, thus making each 
 * *minimum:* returns the minimum value in the tree & nil if the tree is empty
 * *sort:* returns an array of all of the tree values sorted from smallest to largest. Returns an error message if the tree is empty.
 * *count:* returns the number of nodes in the tree
+* *count_leaves:* returns the number of leaves (nodes with no left or right link) in the tree
 * *max_height:* returns the maximum height of the tree (depth of lowest node)
 * *delete(value):* deletes the node in the tree with the given value. Returns an error message if the tree is empty or if the node doesn't exist. Uses the [in-order successor node](https://en.wikipedia.org/wiki/Binary_search_tree#Deletion) for the deletion.
 
@@ -40,6 +41,8 @@ bst.sort
 => [6, 8, 9, 10, 11, 12, 14]
 bst.count
 => 7
+bst.count_leaves
+=> 4
 bst.max_height
 => 3
 bst.delete(12)
