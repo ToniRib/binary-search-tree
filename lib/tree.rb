@@ -95,5 +95,5 @@ if __FILE__ == $0
   bst = Tree.new
   bst.reader.read(bst)
   bst.writer.write(bst.sort)
-  puts "Create file #{ARGV[1]} with sorted data from #{ARGV[0]}"
+  puts "Created file #{ARGV[1]} with sorted data from #{ARGV[0]}"
 end

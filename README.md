@@ -22,7 +22,7 @@ Additionally, the tree allows only numbers (float or integer) or strings, but no
 * *max_height:* returns the maximum height of the tree (depth of lowest node)
 * *delete(value):* deletes the node in the tree with the given value. Returns an error message if the tree is empty or if the node doesn't exist. Uses the [in-order successor node](https://en.wikipedia.org/wiki/Binary_search_tree#Deletion) for the deletion.
 
-### Example
+#### Examples
 
 ```
 bst = Tree.new
@@ -55,6 +55,19 @@ bst.head.right.data
 => 14
 ```
 
+### Command Line Usage
+
+The binary search tree can be used from the command line:
+
+```
+$ ruby lib/tree.rb inputs/numbers_and_strings.txt outputs/sorted_numbers.txt
+=> Cannot add apple to tree: incorrect data type.
+=> Created file outputs/sorted_numbers.txt with sorted data from inputs/numbers_and_strings.txt
+```
+
+In this format, the first argument `inputs/numbers_and_strings.txt` is a text file with one value per line. Each value is inserted into the tree in order from top to bottom. This specific file contains all numbers, except one line which contains the word 'apple' which is rejected from the tree.
+
+The second argument `outputs/sorted_numbers.txt` is another text file which contains the values from the tree, one on each line, sorted in ascending order.
 
 ### Test Suite
 
