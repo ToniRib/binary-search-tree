@@ -903,4 +903,13 @@ class NodeTest < Minitest::Test
 
     assert_equal 4, node.count_leaves
   end
+
+  def test_can_take_and_sort_strings
+    node = Node.new('l')
+    %w(e o a d m z r t s).each do |letter|
+      node.push(Node.new(letter))
+    end
+
+    assert_equal %w(a d e l m o r s t z), node.sort
+  end
 end
